@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Group;
-use App\Http\Requests\StoreGroupRequest;
-use App\Http\Requests\UpdateGroupRequest;
+use App\Models\User;
+use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('dashboard.groups.groups', [
-            'groups' => Group::all()
-        ]);
+        //
     }
 
     /**
@@ -33,10 +30,10 @@ class GroupController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreGroupRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreGroupRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -44,10 +41,10 @@ class GroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Group $group)
+    public function show(User $user)
     {
         //
     }
@@ -55,10 +52,10 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group)
+    public function edit(User $user)
     {
         //
     }
@@ -66,11 +63,11 @@ class GroupController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateGroupRequest  $request
-     * @param  \App\Models\Group  $group
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateGroupRequest $request, Group $group)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -78,10 +75,10 @@ class GroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Group  $group
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Group $group)
+    public function destroy(User $user)
     {
         //
     }
