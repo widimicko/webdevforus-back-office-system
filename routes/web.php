@@ -17,7 +17,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::middleware('auth')->group(function() {
+Route::middleware(['auth', 'web'])->group(function() {
     Route::get('/', [DashboardController::class, 'redirectByRole'])->name('dashboard');
     Route::get('/profile', [DashboardController::class, 'showProfile'])->name('profile');
     Route::put('/profile', [DashboardController::class, 'updateProfile']);
