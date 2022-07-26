@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function() {
     Route::put('/profile', [DashboardController::class, 'updateProfile']);
 
     Route::middleware('Admin')->group(function() {
-        Route::resource('/users', UserController::class);
+        Route::resource('/users', UserController::class)->except(['show', 'edit', 'create']);
         Route::resource('/groups', GroupController::class)->except(['show', 'edit', 'create']);
         Route::resource('/members', MemberController::class);
     });

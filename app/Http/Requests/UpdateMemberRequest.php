@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMemberRequest extends FormRequest
+class UpdateMemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,7 @@ class StoreMemberRequest extends FormRequest
             'alamat' => 'required|string|max:255',
             'hp' => 'required|string|between:11,13',
             'email' => 'required|email',
-            'profile_pic' => 'required|file|image|max:2048',
+            'profile_pic' => 'file|image|max:2048',
         ];
     }
 }
