@@ -17,7 +17,7 @@ class MemberFactory extends Factory
     public function definition()
     {
         return [
-            'groupid' => $this->faker->numberBetween(1, 10),
+            'groupid' => $this->faker->numberBetween(1, 3),
             'nama' => fake()->name(),
             'alamat' => fake()->address(),
             'hp' => fake()->phoneNumber(),

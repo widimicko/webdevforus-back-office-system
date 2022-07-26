@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('hp');
             $table->string('email');
-            $table->string('profile_pic');
+            $table->string('profile_pic')->nullable();
             $table->timestamps();
 
             $table->foreign('groupid')->references('groupid')->on('groups');

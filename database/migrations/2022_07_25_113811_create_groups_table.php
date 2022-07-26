@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('groups', function (Blueprint $table) {
             $table->id('groupid');
             $table->string('namagroup');
-            $table->string('kota');
+            $table->string('kota')->nullable();
             $table->timestamps();
         });
     }

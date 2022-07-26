@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Member;
+use Illuminate\Http\Request;
+use App\Imports\MembersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
@@ -94,5 +97,15 @@ class MemberController extends Controller
         Storage::delete($member->profile_pic);
         $member->delete();
         return redirect()->back()->with('success', 'Member deleted successfully');
+    }
+
+    public function importExcel(Request $request)
+    {
+        $request->validate([
+            'excel' => 'required|mimes:xls,xlsx,csv'
+        ]);
+
+        Excel::import(new MembersImport, request()->file('excel'));
+        return redirect()->back()->with('success', 'Data imported successfully');
     }
 }

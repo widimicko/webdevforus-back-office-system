@@ -26,8 +26,8 @@ Route::middleware(['auth', 'web'])->group(function() {
         Route::resource('/users', UserController::class)->except(['show', 'edit', 'create']);
         Route::resource('/groups', GroupController::class)->except(['show', 'edit', 'create']);
         Route::resource('/members', MemberController::class);
+        Route::post('/members/import-excel', [MemberController::class, 'importExcel'])->name('members.import-excel');
     });
 });
-
 
 require __DIR__.'/auth.php';
