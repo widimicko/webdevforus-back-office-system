@@ -18,6 +18,9 @@ Migrate & Seed Database
 
 `php artisan migrate:fresh --seed`
 
+Link storage
+`php artisan storage:link`
+
 Start Server
 
 `php artisan serve`
