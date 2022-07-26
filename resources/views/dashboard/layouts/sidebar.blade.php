@@ -28,7 +28,7 @@
       <li class="nav-heading">Dashboard</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed {{ Request::is('/member') && 'active' }}" href="{{ route('member') }}">
+        <a class="nav-link collapsed {{ Request::is('/profile') && 'active' }}" href="{{ route('profile') }}">
           <i class="bi bi-briefcase"></i>
           <span>Profile</span>
         </a>

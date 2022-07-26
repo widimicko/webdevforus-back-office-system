@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
     public function redirectByRole() {
       if (Auth::user()->role == 'Admin') return redirect()->route('groups.index'); 
-      else if (Auth::user()->role == 'Member') return dd('Member');
+      else if (Auth::user()->role == 'Member') return redirect()->route('profile');
       else abort(403);
     }
 
