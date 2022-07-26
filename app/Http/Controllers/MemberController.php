@@ -13,11 +13,6 @@ use App\Http\Requests\UpdateMemberRequest;
 
 class MemberController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('dashboard.members.members', [
@@ -25,11 +20,6 @@ class MemberController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('dashboard.members.create', [
@@ -37,12 +27,6 @@ class MemberController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMemberRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreMemberRequest $request)
     {
         $validatedRequest = $request->validated();
@@ -53,12 +37,6 @@ class MemberController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Member  $member
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Member $member)
     {
         return view('dashboard.members.edit', [
@@ -67,13 +45,6 @@ class MemberController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMemberRequest  $request
-     * @param  \App\Models\Member  $member
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateMemberRequest $request, Member $member)
     {
         $validatedRequest = $request->validated();
@@ -86,12 +57,6 @@ class MemberController extends Controller
         return redirect()->route('members.index')->with('success', 'Member updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Member  $member
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Member $member)
     {
         Storage::delete($member->profile_pic);

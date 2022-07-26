@@ -10,11 +10,6 @@ use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('dashboard.users.users', [
@@ -22,12 +17,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreUserRequest $request)
     {
         $validatedRequest = $request->validated();
@@ -39,13 +28,6 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User created successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateUserRequest $request, User $user)
     {
         if ($user->email != $request['email']) {
@@ -56,12 +38,6 @@ class UserController extends Controller
         return response()->json(['message' => 'User updated successfully']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(User $user)
     {
         $user->delete();

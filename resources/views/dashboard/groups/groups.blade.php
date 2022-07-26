@@ -44,7 +44,7 @@
                      <tr>
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $group->namagroup }}</td>
-                      <td>{{ $group->kota }}</td>
+                      <td>{{ $group->kota ?? 'Unavailable' }}</td>
                       <td>{{ \Carbon\Carbon::parse($group->updated_at)->diffForHumans() }}</td>
                       <td>
                         <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-groupid="{{ $group->groupid }}" data-bs-namagroup="{{ $group->namagroup }}" data-bs-kota="{{ $group->kota }}">
