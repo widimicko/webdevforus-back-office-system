@@ -13,7 +13,7 @@ class UpdateGroupRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'namagroup' => 'required|string|max:255',
+            'kota' => 'required|string|max:255',
         ];
     }
 }

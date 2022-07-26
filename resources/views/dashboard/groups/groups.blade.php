@@ -46,7 +46,15 @@
                       <td>{{ $group->namagroup }}</td>
                       <td>{{ $group->kota }}</td>
                       <td>{{ \Carbon\Carbon::parse($group->updated_at)->diffForHumans() }}</td>
-                      <td>{{ 'Action' }}</td>
+                      <td>
+                        <button type="button" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#editModal" data-bs-groupid="{{ $group->groupid }}" data-bs-namagroup="{{ $group->namagroup }}" data-bs-kota="{{ $group->kota }}">
+                          <i class="bi bi-pencil"></i> Edit
+                        </button>
+                        <form action="{{ route('groups.destroy', $group->groupid) }}" method="POST" class="d-inline">
+                          @method('delete') @csrf
+                          <button class="btn btn-danger border-0" onclick="return confirm('Are you sure to delete data?')"><i class="bi bi-trash"></i> Delete</button>
+                        </form>
+                      </td>
                      </tr>
                    @endforeach
                   </tbody>
@@ -62,7 +70,7 @@
   <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form id="editForm" action="" method="POST">
+        <form id="editForm" action="{{ route('groups.store') }}" method="POST">
           @csrf
           <div class="modal-header">
             <h5 class="modal-title" id="createModalLabel">Create Form</h5>
@@ -70,12 +78,12 @@
           </div>
           <div class="modal-body">
             <div class="mb-3">
-              <label class="form-label">Full Name</label>
-              <input type="text" id="name" name="name" class="form-control">
+              <label class="form-label">Name</label>
+              <input type="text" id="namagroup" name="namagroup" class="form-control">
             </div>
             <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" id="email" name="email" class="form-control">
+              <label class="form-label">City</label>
+              <input type="text" id="kota" name="kota" class="form-control">
             </div>
           </div>
           <div class="modal-footer">
@@ -97,12 +105,12 @@
         <div class="modal-body">
           <input type="hidden" id="idUpdate" name="id">
           <div class="mb-3">
-            <label class="form-label">Full Name</label>
-            <input type="text" id="nameUpdate" name="name" class="form-control">
+            <label class="form-label">Name</label>
+            <input type="text" id="namagroupUpdate" name="namagroup" class="form-control">
           </div>
           <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" id="emailUpdate" name="email" class="form-control">
+            <label class="form-label">City</label>
+            <input type="text" id="kotaUpdate" name="kota" class="form-control">
           </div>
         </div>
         <div class="modal-footer">
@@ -122,26 +130,26 @@
     editModal.addEventListener('show.bs.modal', function (event) {
       const button = event.relatedTarget
 
-      editModal.querySelector('#idUpdate').value = button.getAttribute('data-bs-id')
-      editModal.querySelector('#nameUpdate').value = button.getAttribute('data-bs-name')
-      editModal.querySelector('#emailUpdate').value = button.getAttribute('data-bs-email')
+      editModal.querySelector('#idUpdate').value = button.getAttribute('data-bs-groupid')
+      editModal.querySelector('#namagroupUpdate').value = button.getAttribute('data-bs-namagroup')
+      editModal.querySelector('#kotaUpdate').value = button.getAttribute('data-bs-kota')
     })
 
     $('#confirmUpdate').click(() => {
       $.ajax({
         type: 'PUT',
-        url: `${window.location.origin}/dashboard/users/${$('#idUpdate').val()}`,
+        url: `${window.location.origin}/groups/${$('#idUpdate').val()}`,
         data: {
           _token: '{{ csrf_token()  }}',
-          name: editModal.querySelector('#nameUpdate').value,
-          email: editModal.querySelector('#emailUpdate').value
+          namagroup: editModal.querySelector('#namagroupUpdate').value,
+          kota: editModal.querySelector('#kotaUpdate').value
         },
         success() {
           location.reload()
         },
         error(response) {
           Toastify({
-            text: `Failed to update user : ${response.responseJSON.errors.email}`,
+            text: `Failed to update group : ${JSON.stringify(response.responseJSON.errors)}`,
             duration: 10000,
             close: true,
             gravity: "top",

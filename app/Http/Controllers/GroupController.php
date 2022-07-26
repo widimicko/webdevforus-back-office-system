@@ -21,16 +21,6 @@ class GroupController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreGroupRequest  $request
@@ -38,29 +28,8 @@ class GroupController extends Controller
      */
     public function store(StoreGroupRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Group  $group
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Group $group)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Group  $group
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Group $group)
-    {
-        //
+        Group::create($request->validated());
+        return redirect()->back()->with('success', 'Group created successfully');
     }
 
     /**
@@ -72,7 +41,8 @@ class GroupController extends Controller
      */
     public function update(UpdateGroupRequest $request, Group $group)
     {
-        //
+        $group->update($request->validated());
+        return response()->json(['message' => 'Group updated successfully']);
     }
 
     /**
@@ -83,6 +53,8 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+        return redirect()->back()->with('success', 'Group deleted successfully');
+
     }
 }

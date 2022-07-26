@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function() {
 
     Route::middleware('Admin')->group(function() {
         Route::resource('/users', UserController::class);
-        Route::resource('/groups', GroupController::class);
+        Route::resource('/groups', GroupController::class)->except(['show', 'edit', 'create']);
         Route::resource('/members', MemberController::class);
     });
 });

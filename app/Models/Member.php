@@ -12,7 +12,7 @@ class Member extends Model
     use HasFactory;
 
     protected $primaryKey = 'memberid';
-    protected $protected = ['memberid'];
+    protected $guarded = ['memberid'];
 
     public function group() : BelongsTo
     {

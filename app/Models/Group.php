@@ -12,7 +12,7 @@ class Group extends Model
     use HasFactory;
 
     protected $primaryKey = 'groupid';
-    protected $protected = ['groupid'];
+    protected $guarded = ['groupid'];
 
     public function members() : HasMany
     {
